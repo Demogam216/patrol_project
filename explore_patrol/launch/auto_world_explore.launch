@@ -1,0 +1,39 @@
+<launch>
+  <!-- Аргумент для выбора мира -->
+  <arg name="world" default="clinic" doc="World to load: office, clinic, cafe"/>
+
+  <!-- Параметры модели и позиции робота -->
+  <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="x_pos" default="1.0"/> 
+  <arg name="y_pos" default="3.0"/>
+  <arg name="z_pos" default="0.0"/>
+
+  <!-- Запуск Gazebo с выбранным миром -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find explore_patrol)/worlds/$(arg world).world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+  </include>
+
+  <!-- Параметр для описания робота -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+  <!-- Спавн робота -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model turtlebot3 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+
+  <!-- Добавляем задержку для инициализации Gazebo -->
+  <node pkg="roslaunch" type="roslaunch" name="gazebo_delay" args="$(find explore_patrol)/scripts/delay_launch.py 15" output="screen"/>
+
+  <!-- Запуск SLAM с помощью frontier_exploration -->
+  <include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch">
+    <arg name="slam_methods" value="frontier_exploration"/>
+  </include>
+
+  <!-- Добавляем задержку для инициализации SLAM -->
+  <node pkg="roslaunch" type="roslaunch" name="slam_delay" args="$(find explore_patrol)/scripts/delay_launch.py 10" output="screen"/>
+
+  <!-- Запуск explore_lite -->
+  <include file="$(find explore_lite)/launch/explore.launch"/>
+</launch>

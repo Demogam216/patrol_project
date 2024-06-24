@@ -1,0 +1,10 @@
+<launch>
+  <arg name="map_topic" default="/map" />
+  <arg name="cmd_vel_topic" default="/cmd_vel" />
+
+  <!-- Launch the exploration node -->
+  <node name="explore" pkg="explore_lite" type="explore" output="screen">
+    <param name="map_topic" value="$(arg map_topic)" />
+    <param name="cmd_vel_topic" value="$(arg cmd_vel_topic)" />
+  </node>
+</launch>
