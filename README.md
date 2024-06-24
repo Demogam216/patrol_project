@@ -70,7 +70,3 @@ export TURTLEBOT3_MODEL=<название_модели>
 ./src/explore_patrol/scripts/start_patrol.sh <название_мира>
 ```
 где <название_мира> может быть clinic, cafe, или office.
-
-
-
->>>>>>> Перенос проекта в ветку main
