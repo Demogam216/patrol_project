@@ -12,8 +12,8 @@
 
 1. Склонируйте репозиторий вашего проекта на целевое устройство:
 ```
-git clone <URL_вашего_репозитория>
-cd <название_вашего_репозитория>
+git clone https://github.com/Demogam216/patrol_project.git
+cd ~/catkin_ws/src
 ```
 
 2. Сборка Docker контейнера:
