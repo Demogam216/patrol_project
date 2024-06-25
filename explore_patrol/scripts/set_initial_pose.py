@@ -26,9 +26,8 @@ def set_initial_pose(x, y, theta):
     rospy.loginfo("Initial pose set to x: {}, y: {}, theta: {}".format(x, y, theta))
 
 if __name__ == "__main__":
-    # Define the initial position and orientation (yaw) here
     x_initial = 1.0
     y_initial = 3.0
-    theta_initial = 0.0  # Change this to your desired orientation
+    theta_initial = 0.0  
 
     set_initial_pose(x_initial, y_initial, theta_initial)
