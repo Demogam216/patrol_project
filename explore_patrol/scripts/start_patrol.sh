@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Проверьте, переданы ли оба аргумента
 if [ -z "$1" ] || [ -z "$2" ]; then
   echo "Usage: $0 [clinic|cafe|office] [burger|waffle|waffle_pi]"
   exit 1
