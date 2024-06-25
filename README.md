@@ -42,9 +42,9 @@ source /root/catkin_ws/devel/setup.bash
 
 ```
 
-###Запуск проекта
+### Запуск проекта
 
-###Запуск исследования мира и зарисовки карты
+### Запуск исследования мира и зарисовки карты
 
 1. В контейнере запустите исследование мира:
 ```
@@ -56,7 +56,7 @@ roslaunch explore_patrol auto_world_explore.launch world:=<название_ми
 roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=frontier_exploration
 ```
 
-###Запуск патрулирования
+### Запуск патрулирования
 
 1. Убедитесь, что в контейнере выполнены следующие команды:
 ```
@@ -67,6 +67,9 @@ export TURTLEBOT3_MODEL=<название_модели>
 
 2. Запустите скрипт патрулирования:
 ```
-./src/explore_patrol/scripts/start_patrol.sh <название_мира>
+./src/explore_patrol/scripts/start_patrol.sh <название_мира> <название модели>
 ```
-где <название_мира> может быть clinic, cafe, или office.
+где <название_мира> может быть clinic, cafe, или office;
+где <название модели> может быть burger, waffle, waffle_pi.
+
+### !!!На данный момент патрулирование реализовано только для мира "clinic"!!!
